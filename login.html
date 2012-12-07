@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-type" />
+    <title>Sign in to your Mconf account</title>
+    <script src="login.js"></script>
+    <link href="login.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div id="loading">
+      <span>Checking if you are already logged into mconf.org</span>
+    </div>
+
+    <form accept-charset="UTF-8" action="https://mconf.org/session" method="POST" novalidate="novalidate" id="login-form">
+      <span class="title">Sign in to your mconf.org account</span>
+      <label class="string" for="login">
+        E-mail or username:
+      </label>
+      <input autofocus="autofocus" id="login" name="login" size="30" type="text" />
+      <label class="string" for="password">
+        Password:
+      </label>
+      <input id="password" name="password" size="30" type="password" />
+      <a class="links" href="http://mconf.org">mconf.org</a>
+      <input name="commit" type="submit" value="Login" />
+    </form>
+
+  </body>
+</html>
