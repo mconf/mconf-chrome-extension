@@ -12,6 +12,22 @@
       <span>Checking if you are already logged into mconf.org</span>
     </div>
 
+    <div id="room-selection">
+      <span class="title">Select a room to join:</span>
+      <div class="room-options">
+        <input id="room-type-personal" type="radio" name="room-type"
+               value="personal" checked="checked">
+        <label for="room-type-personal">My personal room</label>
+        <input id="room-type-other" type="radio" name="room-type" value="other">
+        <label for="room-type-other">Other</label>
+        <!-- <button id="personal-room-go" class="btn">My personal room</button> -->
+      </div>
+      <div class="room-form">
+        <span class="prepend-add-on">http://mconf.org/webconf/</span><input autofocus="autofocus" id="room-name" type="text" />
+        <button id="room-go" class="btn">Go!</button>
+      </div>
+    </div>
+
     <form accept-charset="UTF-8" action="https://mconf.org/session" method="POST" novalidate="novalidate" id="login-form">
       <span class="title">Sign in to your mconf.org account</span>
       <label class="string" for="login">
@@ -22,8 +38,8 @@
         Password:
       </label>
       <input id="password" name="password" size="30" type="password" />
-      <a class="links" href="http://mconf.org">mconf.org</a>
-      <input name="commit" type="submit" value="Login" />
+      <a id="mconf-org-link" class="links" href="http://mconf.org">mconf.org</a>
+      <input name="commit" type="submit" value="Login" class="btn" />
     </form>
 
   </body>

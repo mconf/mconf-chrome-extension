@@ -8,7 +8,7 @@
             "128": "icon128.png" },
   "browser_action": {
     "default_icon": "icon16.png",
-    "default_title": "Open your web conference room!",
+    "default_title": "Click to choose a web conference room",
     "default_popup": "login.html"
   },
   "permissions": [
