@@ -1,5 +1,31 @@
 var views = {};
 var currentUser = null;
+var bgPage = chrome.extension.getBackgroundPage();
+
+function updateTabList(tabs) {
+  list = document.getElementById('tab-list');
+  list.innerHTML = "";
+  for (var key in tabs) {
+    if (tabs.hasOwnProperty(key)) {
+      var li = document.createElement('li');
+      li.innerHTML = tabs[key].mconfRoomName;
+      li.setAttribute('data-tab-index', tabs[key].index);
+
+      li.onclick = function(e) {
+        console.log('mouseover', e.target.getAttribute('data-tab-index'));
+        highlightTab(parseInt(e.target.getAttribute('data-tab-index')));
+      };
+
+      list.appendChild(li);
+    }
+  }
+}
+
+function highlightTab(index) {
+  chrome.tabs.highlight({tabs: index}, function(window) {
+    console.log('highlighted', window);
+  });
+}
 
 function submitLogin(e) {
   if (e.preventDefault) e.preventDefault();
@@ -31,7 +57,8 @@ function goToWebconf(username) {
   properties = { url: url };
   chrome.tabs.create(properties, function(tab) {
     console.log('Opened tab:', tab);
-    // chrome.browserAction.setBadgeText({text: "on"});
+    tab.mconfRoomName = username;
+    bgPage.tabOpened(tab);
   });
 }
 
@@ -186,6 +213,8 @@ window.onload = function() {
   views['room-selection'] = document.getElementById('room-selection');
 
   attachAllEvents();
+
+  updateTabList(bgPage.tabs);
 
   getUserAndShowView();
 }

@@ -101,3 +101,19 @@ input[type=text]:focus, input[type=password]:focus {
   margin-right: -1px;
   line-height: 18px;
 }
+
+#tab-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+#tab-list li {
+  cursor: pointer;
+  padding: 2px 8px;
+}
+
+ul.zebra li { background: #f6f6f6; }
+ul.zebra li:nth-child(odd) { background: #fff; }
+
+ul.zebra li:hover { background: #CBE4CB; }

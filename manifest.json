@@ -1,6 +1,6 @@
 {
   "name": "Mconf",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifest_version": 2,
   "description": "Access your web conference room in Mconf with a single click.",
   "icons": { "16": "icon16.png",
@@ -9,7 +9,10 @@
   "browser_action": {
     "default_icon": "icon16.png",
     "default_title": "Click to choose a web conference room",
-    "default_popup": "login.html"
+    "default_popup": "main.html"
+  },
+  "background": {
+    "scripts": ["background.js"]
   },
   "permissions": [
     "https://mconf.org/"
