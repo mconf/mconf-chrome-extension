@@ -2,29 +2,50 @@ var views = {};
 var currentUser = null;
 var bgPage = chrome.extension.getBackgroundPage();
 
+// Removes the list of tabs from the html and rebuilds it with
+// the elements in `tabs` (if any).
 function updateTabList(tabs) {
-  list = document.getElementById('tab-list');
+  var hasTabsOpen = false;
+  var list = document.getElementById('tab-list');
+  var listContainer = document.getElementById('tab-list-container');
+
+  listContainer.style.display = 'none';
   list.innerHTML = "";
+
   for (var key in tabs) {
     if (tabs.hasOwnProperty(key)) {
+
+      // main element with the name of the room
       var li = document.createElement('li');
       li.innerHTML = tabs[key].mconfRoomName;
-      li.setAttribute('data-tab-index', tabs[key].index);
-
+      li.setAttribute('data-tab-id', tabs[key].id);
       li.onclick = function(e) {
-        console.log('mouseover', e.target.getAttribute('data-tab-index'));
-        highlightTab(parseInt(e.target.getAttribute('data-tab-index')));
+        var tabId = parseInt(e.target.getAttribute('data-tab-id'));
+        focusTab(bgPage.getTab(tabId));
       };
-
       list.appendChild(li);
+
+      // tip shown on hover
+      var tip = document.createElement('span');
+      tip.className = 'tip';
+      tip.innerHTML = 'click to go to this tab!';
+      li.appendChild(tip);
+
+      hasTabsOpen = true;
     }
+  }
+
+  if (hasTabsOpen) {
+    listContainer.style.display = 'block';
   }
 }
 
-function highlightTab(index) {
-  chrome.tabs.highlight({tabs: index}, function(window) {
-    console.log('highlighted', window);
+function focusTab(tab) {
+  // Highlight of one tab set focus to it
+  chrome.tabs.highlight({windowId: tab.windowId, tabs: tab.index}, function(window) {
   });
+  // In case the tab is not in the currently focused window
+  chrome.windows.update(tab.windowId, {focused: true});
 }
 
 function submitLogin(e) {
@@ -214,7 +235,7 @@ window.onload = function() {
 
   attachAllEvents();
 
-  updateTabList(bgPage.tabs);
+  updateTabList(bgPage.getTabs());
 
   getUserAndShowView();
 }

@@ -102,18 +102,35 @@ input[type=text]:focus, input[type=password]:focus {
   line-height: 18px;
 }
 
-#tab-list {
-  list-style: none;
-  padding: 0;
+#tab-list-container {
   margin: 10px 0;
+}
+
+#tab-list {
+  padding: 0;
+  margin: 5px 0 5px 20px;
 }
 
 #tab-list li {
   cursor: pointer;
   padding: 2px 8px;
+  border-radius: 3px;
 }
 
-ul.zebra li { background: #f6f6f6; }
-ul.zebra li:nth-child(odd) { background: #fff; }
+#tab-list li .tip {
+  font-size: 10px;
+  color: #333;
+  text-shadow: white 2px 2px 3px;
+  float: right;
+  padding: 0 3px;
+  margin: 2px 0;
+  display: none;
+}
 
-ul.zebra li:hover { background: #CBE4CB; }
+#tab-list li:hover .tip {
+  display: inline-block;
+}
+
+.zebra li { background: #f6f6f6; }
+.zebra li:nth-child(odd) { background: #fff; }
+.zebra li:hover { background: #D9F5D9; }

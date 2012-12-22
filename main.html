@@ -26,8 +26,11 @@
         <span class="prepend-add-on">http://mconf.org/webconf/</span><input autofocus="autofocus" id="room-name" type="text" />
         <button id="room-go" class="btn">Go!</button>
       </div>
-      <ul id="tab-list" class="zebra">
-      </ul>
+      <div id="tab-list-container">
+        <span class="title">Open meetings:</span>
+        <ol id="tab-list" class="zebra">
+        </ol>
+      </div>
     </div>
 
     <form accept-charset="UTF-8" action="https://mconf.org/session" method="POST" novalidate="novalidate" id="login-form">
